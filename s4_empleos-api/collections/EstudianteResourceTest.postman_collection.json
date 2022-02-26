@@ -1,0 +1,961 @@
+{
+	"info": {
+		"_postman_id": "4e9ded97-66b2-4f03-9299-055da232eb76",
+		"name": "EstudianteResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un Token Primero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fce4f12-5e31-4fb6-b865-a2b1cbd20d2e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Primero\",\n\t\"tipo\":\"Estudiante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un Token Segundo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fce4f12-5e31-4fb6-b865-a2b1cbd20d2e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Segundo\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1f48d11c-e4da-4416-b3df-4b8007d8df83",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code === 200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"token\":\"Primero\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"idMedioDepago\":null,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": [],\r\n    \"cuentaBancaria\":{}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante nombre no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8131310a-1c65-440b-8172-2b72970c1e5a",
+						"exec": [
+							"tests[\"No crea con nombre nulo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es un nombre válido\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"nombre\": \"\",\r\n    \"semestre\": 4,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante correo no valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8e4a4f7-fd97-4ebe-b3eb-a3ea9a03d20f",
+						"exec": [
+							"tests[\"No crea con correo no valido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"El correo no era de uniandes\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"correo\": \"aajkwdnakd@gmail.com\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante calificacion mayor a 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42d261a9-b27b-4b1c-a023-ed56c0c57f18",
+						"exec": [
+							"tests[\"No crea con calificacion mayor a 5\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es una calificación válida\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 6.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante calificacion menor a 0",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c8d6fa9-3e86-476c-a93a-7edc745f5813",
+						"exec": [
+							"tests[\"No crea con calificacion menor a 0\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es una calificación válida\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": -1.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante semestre mayor a 12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e3efe8e0-96a8-43bd-8184-56b79eeece7f",
+						"exec": [
+							"tests[\"No crea con semestre mayor a 13\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es un semestre válido\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 13,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante semestre menor a 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c664618f-ab7b-4a00-aacc-aba82c611f88",
+						"exec": [
+							"tests[\"No crea con semestre menor a 1\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es un semestre válido\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 0,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante carrera vacia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52e55d41-e24b-4867-ae93-d9b92790bd38",
+						"exec": [
+							"tests[\"No crea con carrera nula\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es una carrera válida\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear estudiante horario vacio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"tests[\"No crea con horario nulo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje de error correcto\"] = responseBody.has(\"No es un horario válido\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 2.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"horarioDeTrabajo\": \"\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los estudiantes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"estudiantes count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un estudiante existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/{{new_id_c}}?token=Segundo",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						"{{new_id_c}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Segundo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un estudiante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /estudiantes/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacionPromedio\": 4.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"token\":\"Primero\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"idMedioDepago\":null,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": [],\r\n    \"cuentaBancaria\":{}\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un estudiante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /estudiantes/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"calificacionPromedio\": 5.0,\r\n    \"carrera\": \"Sistemas\",\r\n    \"horarioDeTrabajo\": \"a\",\r\n    \"token\":\"Primero\",\r\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\r\n    \"nombre\": \"David\",\r\n    \"semestre\": 4,\r\n    \"idMedioDepago\":null,\r\n    \"calificaciones\": [],\r\n    \"ofertas\": [],\r\n    \"cuentaBancaria\":{}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/{{new_id_c}}?token=Primero",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						"{{new_id_c}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Primero"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borra un estudiante que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae310e1e-5391-4d30-acc3-b9b563d9cea3",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /estudiantes/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

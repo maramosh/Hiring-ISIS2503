@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "3c018ca0-4d34-4bc1-bab1-6202a7c0c178",
+		"name": "CuentaBancariaResourceTest",
+		"description": "Cuenta Bancaria Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un Token Primero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fce4f12-5e31-4fb6-b865-a2b1cbd20d2e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Primero\",\n\t\"tipo\":\"Estudiante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un Token Segundo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fce4f12-5e31-4fb6-b865-a2b1cbd20d2e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Segundo\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear  estudiante prueba",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5444bdef-9e19-4e11-ac21-9799147da29c",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en elcreate estudiante prueba\"] = responseCode.code === 200;",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"calificacionPromedio\": 2.0,\n    \"carrera\": \"Sistemas\",\n    \"horarioDeTrabajo\": \"a\",\n    \"correo\": \"aajkwdnakd@uniandes.edu.co\",\n    \"nombre\": \"David\",\n    \"semestre\": 4,\n    \"calificaciones\": [],\n    \"ofertas\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/estudiantes/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"estudiantes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una cuentaBancaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae5942ab-4854-42d7-9bad-bffc6c2476a5",
+						"exec": [
+							"tests[\"No genera error\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_c\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numeroCuenta\": \"123456789123\",\n\t\"nombreBanco\":  \"Bancolombia\",\n\t\"estudiante\":{\n\t\t\"id\":\"{{new_id_e}}\"\n\t},\n\t\"tipoCuenta\" : \"Ahorros\",\n\t\"token\":\"Primero\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						""
+					]
+				},
+				"description": "Crear una CuentaBancaria "
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una cuenta numero repetido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0509847-b8af-4213-9487-18eb86fb7a7e",
+						"exec": [
+							"tests[\"No crea una cuenta con numero repetido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has (\"Ya existe una cuenta Bancaria con ese numero de cuenta \");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numeroCuenta\": \"123456789123\",\n\t\"nombreBanco\":  \"Bancolombia\",\n\t\"estudiante\":{\n\t\t\"id\":\"{{new_id_e}}\"\n\t},\n\t\"tipoCuenta\" : \"Ahorros\",\n\t\"token\":\"Primero\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cuenta con numero vacio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42389feb-0197-459e-9b36-04da0c24be7a",
+						"exec": [
+							"tests[\"No crea una cuenta con numero vacio\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has (\"El numero de cuenta está vacío\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"numeroCuenta\": null,\n\t\"nombreBanco\":  \"Bancolombia\",\n\t\"estudiante\":{\n\t\t\"id\":\"{{new_id_e}}\"\n\t},\n\t\"tipoCuenta\" : \"Ahorros\",\n\t\"token\":\"Primero\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cuenta numero negativo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43fb6332-a634-4b3e-b271-ce803a283283",
+						"exec": [
+							"tests[\"No crea una cuenta con numero negativo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has (\"El numero de cuenta no puede contener caracteres diferentes  a un numero entero.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numeroCuenta\": \"-123456789123\",\n\t\"nombreBanco\":  \"Bancolombia\",\n\t\"estudiante\":{\n\t\t\"id\":\"{{new_id_e}}\"\n\t},\n\t\"tipoCuenta\" : \"Ahorros\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener una cuenta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e356148-eafe-4696-8c8b-31ee424472da",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/{{new_id_c}}?token=Primero",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						"{{new_id_c}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Primero"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener cuenta con id falsa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71bfc3e4-ab95-4f21-8c50-1475aaa63aeb",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 412;",
+							"pm.environment.set(\"variable_key\", \"variable_value\");tests[\"Mensaje correcto de error\"] = responseBody.has(\"No existe una cuentabacaria Con esa id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/69",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						"69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar una cuenta bancaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "373a20f6-408c-47b8-8ad8-4a7abf4ac92c",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numeroCuenta\": \"123456789123\",\n\t\"nombreBanco\":  \"Bancolombia\",\n\t\"estudiante\":{\n\t\t\"id\":\"{{new_id_e}}\"\n\t},\n\t\"tipoCuenta\" : \"Corriente\",\n\t\"token\":\"Primero\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/{{new_id_c}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						"{{new_id_c}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar una cuenta con id falsa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "197b415a-ea1a-4d50-9837-dbb4f29e032a",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No existe una cuentabacaria Con esa id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"numeroCuenta\": \"123456789123\",\n\t\"nombreBanco\":  \"Bancolombia\",\n\t\"estudiante\":{\n\t\t\"id\":\"{{new_id_e}}\"\n\t},\n\t\"tipoCuenta\" : \"Ahorros\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/69",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						"69"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Elimina una cuenta bancaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a564f3e0-4bc2-4c77-8979-5c7022ad7b1a",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/{{new_id_c}}?token=Primero",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						"{{new_id_c}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Primero"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una cuenta con id falsa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "755978e5-c946-4ec0-9bf2-552a9c3cfc83",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No existe una cuentabacaria Con esa id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/cuentaBancaria/69",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"cuentaBancaria",
+						"69"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

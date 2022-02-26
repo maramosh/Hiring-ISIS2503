@@ -1,0 +1,619 @@
+{
+	"info": {
+		"_postman_id": "e4270b7b-bde9-4e57-9732-c1b5761c9a54",
+		"name": "TrabajoResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear token para pruebas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de2b06b8-3b96-41a6-8d2d-ef63dcce0525",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Primero1\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear token para pruebas 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de2b06b8-3b96-41a6-8d2d-ef63dcce0525",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Delete1\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear token para pruebas malo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de2b06b8-3b96-41a6-8d2d-ef63dcce0525",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Segundo2\",\n\t\"tipo\":\"Estudiante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Trabajo como Contratista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bed7b7ec-010c-4d12-b4f2-20bda43aef6c",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_z\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verificado\":true,\n\t\"cumplido\":false,\n\t\"oferta\":{},\n\t\"factura\":{},\n\t\"token\":\"Primero1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Trabajo como Estudiante",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bed7b7ec-010c-4d12-b4f2-20bda43aef6c",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"No se le tiene permitido acceder a este recurso\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verificado\":true,\n\t\"cumplido\":false,\n\t\"factura\":{},\n\t\"oferta\":{},\n\t\"token\":\"Segundo2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un trabajo como contratista.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bed7b7ec-010c-4d12-b4f2-20bda43aef6c",
+						"exec": [
+							"tests[\"No genera error en el put\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verificado\":false,\n\t\"cumplido\":true,\n\t\"oferta\":{},\n\t\"factura\":{},\n\t\"token\":\"Primero1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/{{new_id_z}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"{{new_id_z}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un trabajo como estudiante.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bed7b7ec-010c-4d12-b4f2-20bda43aef6c",
+						"exec": [
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"No tiene permitido acceder a El recurso /trabajo/\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verificado\":true,\n\t\"cumplido\":false,\n\t\"oferta\":{},\n\t\"factura\":{},\n\t\"token\":\"Segundo2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/{{new_id_z}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"{{new_id_z}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un trabajo inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bed7b7ec-010c-4d12-b4f2-20bda43aef6c",
+						"exec": [
+							"tests[\"No genera error en el put\"] = responseCode.code===404;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El recurso /trabajo/0 no existe.\");",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"verificado\":false,\n\t\"cumplido\":true,\n\t\"oferta\":{},\n\t\"factura\":{},\n\t\"token\":\"Primero1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un trabajo sin estar registrado.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58ca345c-ad47-452d-900e-9866c28375c5",
+						"exec": [
+							"tests[\"No genera error en el get\"]= responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encuentra Registrado\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/{{new_id_z}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"{{new_id_z}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un trabajo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58ca345c-ad47-452d-900e-9866c28375c5",
+						"exec": [
+							"tests[\"No genera error en el get\"]= responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/{{new_id_z}}?token=Primero1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"{{new_id_z}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Primero1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar trabajo inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "534c2129-fa8b-4699-997b-9ab4cd010a10",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===404;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/0?token=Primero1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"0"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Primero1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar trabajo como estudiante.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8329f2f-21cd-43a3-ade9-99526a1ada52",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"No tiene permiso para esto\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/{{new_id_z}}?token=Segundo2",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"{{new_id_z}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Segundo2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar trabajo sin registrarse.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "78b968c2-2c1b-432f-a963-77f88a887ac8",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"No se encuentra Registrado\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/trabajos/{{new_id_z}}?token=",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"trabajos",
+						"{{new_id_z}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

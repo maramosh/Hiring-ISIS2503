@@ -1,0 +1,685 @@
+{
+	"info": {
+		"_postman_id": "9270e57a-19c6-47f7-bc4d-890b2ff4a778",
+		"name": "ContratistaResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear token para prueba.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fec9f6a4-54e6-4353-aa79-bfe3327063fc",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"tokenPrueba\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear contratista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3bb3e8ec-eb57-4da0-8cbc-2e39b550be3d",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\", data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{   \n\t\"esExterno\":true,\n\t\"nombre\":\"Bad Bunny\", \n\t\"email\":\"fff@mail.com\",\n\t\"rutaimagen\":\"ysuyl\",\n\t\"token\":\"tokenPrueba\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear contratista 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6f90bc3-7d57-4b9e-8c4b-06548b4bf9dc",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e2\", data.id);",
+							"tests[\"No genera error en el post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n\t\"esExterno\":true,\n\t\"nombre\":\"Anuel AA\", \n\t\"email\":\"masf@gmail.com\",\n\t\"rutaimagen\":\"Escritorio\",\n\t\"token\":\"tokenPrueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear contratista nombre vacio.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e950791c-ddb0-4b34-8be5-5c9b1ad6ac7d",
+						"exec": [
+							"tests[\"No crea con nombre vacio\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El nombre del contratista está vacío\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n\t\"esExterno\":true,\n\t\"nombre\": \"\", \n\t\"email\":\"masrtf@gmail.com\",\n\t\"rutaimagen\":\"Documentos\",\n\t\"token\":\"tokenPrueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear contratista nombre nulo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e950791c-ddb0-4b34-8be5-5c9b1ad6ac7d",
+						"exec": [
+							"tests[\"No crea con nombre nulo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El nombre del contratista está vacío\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n\t\"esExterno\":true,\n\t\"nombre\": null, \n\t\"email\":\"masrtf@gmail.com\",\n\t\"rutaimagen\":\"Documentos\",\n\t\"token\":\"tokenPrueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear contratista email invalido.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e950791c-ddb0-4b34-8be5-5c9b1ad6ac7d",
+						"exec": [
+							"tests[\"No crea con email invalido\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El correo no es valido \");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n\t\"esExterno\":true,\n\t\"nombre\": \"Maluma\", \n\t\"email\":\"masrtfgmail\",\n\t\"rutaimagen\":\"Documentos\",\n\t\"token\":\"tokenPrueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar contratista.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4635577-a0fa-449b-a6fc-86e22fedffa8",
+						"exec": [
+							"tests[\"No genera error en el put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n\t\"esExterno\":true,\n\t\"nombre\":\"Sia\", \n\t\"email\":\"masrtf@uniandes\",\n\t\"rutaimagen\":\"Imagenes\",\n\t\"token\":\"tokenPrueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar contratista inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4635577-a0fa-449b-a6fc-86e22fedffa8",
+						"exec": [
+							"tests[\"No actualiza algo que no existe\"] = responseCode.code === 404;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n\t\"esExterno\":true,\n\t\"nombre\":\"Chandelier\", \n\t\"email\":\"masrtf@uniandes\",\n\t\"rutaimagen\":\"Imagenes\",\n\t\"token\":\"tokenPrueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/-1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los contratistas.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fcbcf5e-2ccc-45cf-b4c3-4bd4800fca60",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un contratista.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fcbcf5e-2ccc-45cf-b4c3-4bd4800fca60",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un contratista inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fcbcf5e-2ccc-45cf-b4c3-4bd4800fca60",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code === 404;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/-1",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar contratista.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fcbcf5e-2ccc-45cf-b4c3-4bd4800fca60",
+						"exec": [
+							"tests[\"No genera error en el delete\"] = responseCode.code === 204;",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/{{new_id_e}}?token=tokenPrueba",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"{{new_id_e}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "tokenPrueba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar contratista inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fcbcf5e-2ccc-45cf-b4c3-4bd4800fca60",
+						"exec": [
+							"tests[\"No genera error en el delete\"] = responseCode.code === 404;",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/-1?token=tokenPrueba",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"-1"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "tokenPrueba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar contratista sin registrarse.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5fcbcf5e-2ccc-45cf-b4c3-4bd4800fca60",
+						"exec": [
+							"tests[\"No genera error en el delete\"] = responseCode.code === 412;",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/contratistas/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"contratistas",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

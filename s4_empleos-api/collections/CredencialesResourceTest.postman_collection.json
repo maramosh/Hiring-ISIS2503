@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "7fd63c6b-6f22-40e7-8bb4-fda0c9386196",
+		"name": "CredencialesResourceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear token contratista.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "18c47676-3911-442b-af98-ec2cc8409c3c",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Segundo\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear token estudiante.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2b183fc-1bd7-4c13-be6c-41be764026ea",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_f\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Primero\",\n\t\"tipo\":\"Estudiante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una credencial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0114375f-dd88-480d-8404-4683664fa336",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=asd@uniandes.edu.co&pass=12345&tipo=asd123",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "asd@uniandes.edu.co"
+						},
+						{
+							"key": "pass",
+							"value": "12345"
+						},
+						{
+							"key": "tipo",
+							"value": "asd123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear credencial correo nulo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e13d502-a0f7-4e66-b4d1-1f038c75bd56",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El campo no puede ser nulo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?pass=12345&tipo=asd123",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "pass",
+							"value": "12345"
+						},
+						{
+							"key": "tipo",
+							"value": "asd123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear credencial pass nulo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e13d502-a0f7-4e66-b4d1-1f038c75bd56",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El campo no puede ser nulo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=asd@uniandes.edu.co&tipo=asd123",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "asd@uniandes.edu.co"
+						},
+						{
+							"key": "tipo",
+							"value": "asd123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear credencial tipo nulo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e13d502-a0f7-4e66-b4d1-1f038c75bd56",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El campo no puede ser nulo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=asd@uniandes.edu.co&pass=12345",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "asd@uniandes.edu.co"
+						},
+						{
+							"key": "pass",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear credencial tipo vacio.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e13d502-a0f7-4e66-b4d1-1f038c75bd56",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El campo no puede ser vacìo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=asd@uniandes.edu.co&pass=12345&tipo=",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "asd@uniandes.edu.co"
+						},
+						{
+							"key": "pass",
+							"value": "12345"
+						},
+						{
+							"key": "tipo",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear credencial pass vacio.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e13d502-a0f7-4e66-b4d1-1f038c75bd56",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El campo no puede ser vacìo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=asd@uniandes.edu.co&pass=&tipo=asd123",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "asd@uniandes.edu.co"
+						},
+						{
+							"key": "pass",
+							"value": ""
+						},
+						{
+							"key": "tipo",
+							"value": "asd123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear credencial correo vacio.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e13d502-a0f7-4e66-b4d1-1f038c75bd56",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El campo no puede ser vacìo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"asd@uniandes.edu.co\",\n\t\"contrasenia\":\"123456789\",\n\t\"tipo\":\"asd123\",\n\t\"token\":\"Primero\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=&pass=12345&tipo=asd123",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": ""
+						},
+						{
+							"key": "pass",
+							"value": "12345"
+						},
+						{
+							"key": "tipo",
+							"value": "asd123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una credencial.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9ad7818-0988-417a-91d5-524979ba6454",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code===200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=asd@uniandes.edu.co&pass=12345",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "asd@uniandes.edu.co"
+						},
+						{
+							"key": "pass",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una credencial inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9ad7818-0988-417a-91d5-524979ba6454",
+						"exec": [
+							"tests[\"No genera error en el get\"] = responseCode.code===204;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/credenciales?correo=a1sd@uniandes.edu.co&pass=12345",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"credenciales"
+					],
+					"query": [
+						{
+							"key": "correo",
+							"value": "a1sd@uniandes.edu.co"
+						},
+						{
+							"key": "pass",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

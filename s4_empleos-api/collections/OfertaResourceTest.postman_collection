@@ -1,0 +1,905 @@
+{
+	"info": {
+		"_postman_id": "8631a00e-e68c-45ca-a930-0c52ee8d5b3f",
+		"name": "OfertaResurceTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un Token Primero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fce4f12-5e31-4fb6-b865-a2b1cbd20d2e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Primero\",\n\t\"tipo\":\"Estudiante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un Token Segundo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2fce4f12-5e31-4fb6-b865-a2b1cbd20d2e",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_t\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"token\":\"Segundo\",\n\t\"tipo\":\"Contratista\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/tokens",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e38143e-5ec8-4cd2-95a3-49d5355c85b6",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_o\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  2 ,\n   \"pagoPorHora\": 50000   ,\n   \"nombre\":   \"Nicolas\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  5 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una oferta 2.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "982a7cd7-bcaf-43f1-8ef0-d6dd7fe88f6f",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===200;",
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_o2\",data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  10 ,\n   \"pagoPorHora\": 5000   ,\n   \"nombre\":   \"Marco\"  ,\n   \"descripcion\":   \"Oferta de Prueba\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   10  ,\n   \"porcentajePagoAdicional\":  25  ,\n   \"estaAbierta\":   \"true\"    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\": 2 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n    \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Oferta nombre vacio.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3ad0b5c-fc71-404f-8c1a-5696b017a020",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El nombre de la oferta está vacío\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  2 ,\n   \"pagoPorHora\": 50000   ,\n   \"nombre\":   \"\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  5 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Oferta categoria vacia.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "321d42d4-848f-4cd9-a621-4709c0d9f600",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"la categoria de la oferta está vacía\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  2 ,\n   \"pagoPorHora\": 50000   ,\n   \"nombre\":   \"ASD\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  5 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear oferta descripción vacía.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cad9f1f2-f6bf-4a91-8564-10d6d71288e9",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"la descripcion de la oferta está vacía\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  2 ,\n   \"pagoPorHora\": 50000   ,\n   \"nombre\":   \"ASD\"  ,\n   \"descripcion\":   \"\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  5 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear oferta horas negativas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9a3843b-ad67-4161-aa69-d801d63c6cfe",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"las horas de trabajo de la oferta debe ser un numero positivo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  2 ,\n   \"pagoPorHora\": 50000   ,\n   \"nombre\":   \"QWRE\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  -1 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear oferta vacantes negativo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8dc08fef-0ae2-4d9d-a201-011aa1ffe0cc",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"el numero de vacantes de la oferta debe ser un numero positivo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  -1 ,\n   \"pagoPorHora\": 50000   ,\n   \"nombre\":   \"QWRE\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  2 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear oferta pago misero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5280d77-8009-47e1-a7a0-38a620abaa55",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"El pago por hora debe ser minimo el SMLV\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  4 ,\n   \"pagoPorHora\": 2000   ,\n   \"nombre\":   \"QWRE\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  2 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear oferta tipo malo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5280d77-8009-47e1-a7a0-38a620abaa55",
+						"exec": [
+							"tests[\"No genera error en el post\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"La oferta debe ser o estandar o express\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 3  ,\n   \"numeroDeVacantes\":  4 ,\n   \"pagoPorHora\": 6000  ,\n   \"nombre\":   \"QWRE\"  ,\n   \"descripcion\":   \"loool\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   2  ,\n   \"porcentajePagoAdicional\":  20  ,\n   \"estaAbierta\":   true    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  2 ,\n   \"rutaImagen\": \"hola.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n   \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8c84b8a0-53fa-4d4e-9c61-dd9b06c8d400",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  \"2\" ,\n   \"pagoPorHora\": \"50000\"   ,\n   \"nombre\":   \"Juan Luis\"  ,\n   \"descripcion\":   \"Ahora si funciona\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   \"2\"  ,\n   \"porcentajePagoAdicional\":  \"20\"  ,\n   \"estaAbierta\":   \"true\"    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  \"5\" ,\n   \"rutaImagen\": \"chao.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n    \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/{{new_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"{{new_id_o}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una oferta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11174e67-504f-4c4c-bfc2-aeef46b45b79",
+						"exec": [
+							"tests[\"No genera error en el put\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No existe el oferta con el id0\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"tipoOferta\": 1  ,\n   \"numeroDeVacantes\":  \"2\" ,\n   \"pagoPorHora\": \"50000\"   ,\n   \"nombre\":   \"Juan Luis\"  ,\n   \"descripcion\":   \"Ahora si funciona\"  ,\n   \"categoria\":   \"Express\"  ,\n   \"tiempoMaximoAplicacion\":   \"2\"  ,\n   \"porcentajePagoAdicional\":  \"20\"  ,\n   \"estaAbierta\":   \"true\"    ,\n   \"requisitos\":  \"Ninguno\"    ,\n   \"horario\":  \"20:04\"  ,\n   \"horasDeTrabajo\":  \"5\" ,\n   \"rutaImagen\": \"chao.png\",\n   \"trabajo\": {},\n   \"estudiantes\":[],\n    \"token\":\"Segundo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una Oferta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ce90360-88f0-4a30-b997-16fcfb70b0ba",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/{{new_id_o}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"{{new_id_o}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las ofertas.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b645ec03-c02e-40bb-a522-4f97a94d1a80",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ofertas palabra clave.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6d374642-ff83-4233-b42a-73e089228e08",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/loool",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"loool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los estudiantes de una oferta.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1ce90360-88f0-4a30-b997-16fcfb70b0ba",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/ofertaId?={{new_id_o}}/estudiantes",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"ofertaId"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "{{new_id_o}}/estudiantes"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una oferta.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64466ee4-41e4-4676-9aca-d3a9b9ba35c4",
+						"exec": [
+							"tests[\"No genera error en el delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/{{new_id_o}}?token=Segundo",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"{{new_id_o}}"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Segundo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar oferta inexistente.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf28ce3e-c72f-49b4-b4c6-8c7015a32893",
+						"exec": [
+							"tests[\"No genera error en el delete\"] = responseCode.code===412;",
+							"tests[\"Mensaje correcto del error\"] = responseBody.has(\"No existe el oferta con el id0\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_empleos-api/api/ofertas/0?token=Segundo",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_empleos-api",
+						"api",
+						"ofertas",
+						"0"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "Segundo"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
