@@ -1,6 +1,6 @@
 # Hiring-ISIS2503
 
-This is a project developed for the course Team Software Developmen in Universidad de los Andes. 
+This is a project developed for the course Team Software Development in Universidad de los Andes. 
 
 ## About
 
